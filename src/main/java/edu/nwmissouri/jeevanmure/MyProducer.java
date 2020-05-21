@@ -36,9 +36,14 @@ public class MyProducer {
 
     // Make our own messages - create your custom logic here
 
-
-      String message =helloMessage();
-      ProducerRecord<String, String> record = new ProducerRecord<String, String>(topicName, message);
+      String result="";
+      
+      String[] names={"jeevan","Dr case"," John","St jos","Maryville"};
+      for(String name:names){
+        String message =helloMessage(name);
+        result+=message;
+      }
+      ProducerRecord<String, String> record = new ProducerRecord<String, String>(topicName, result);
       producer.send(record);
     
     // still allow input from keyboard
@@ -53,12 +58,10 @@ public class MyProducer {
     in.close();
     producer.close();
   }
-  public static String helloMessage(){
-    String result="";
-    String[] names={"jeevan","Dr case"," John","St jos","Maryville"};
-    for(String name:names){
-      result+="hello "+name+"\n";
-    }
+  public static String helloMessage(String name){
+
+     String result="hello "+name+"\n";
+    
     return result;
   }
 }
